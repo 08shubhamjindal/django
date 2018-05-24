@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wiki Search</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<body>
+		<div class="container">
+			<h1>Wiki Search</h1>
+			<input type="text" id="searchTerm">
+			<button id="search" class="btn btn-primary">Submit</button>
+			<a href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-primary">Random</a>
+			<div id="output"></div></div>
+			<div id="header">
+				<div id="searchPanel">
+					<input type="text" id="sea" onkeyup="jump()">
+					<ul id="display"></ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="app1.js"></script>
+<script type="text/javascript">
+var http = new XMLHttpRequest();
+document.getElementById("display").style.visibility = "hidden";
+
+
+fuction jump() 
+{
+	var term = document.getElementById("sea").value;
+	var str = term;
+	var replaced = str.split('')
+.join('_')
+term = replaced;
+
+
+if(term == "")
+{
+	 document.getElementById("display").innerHTML = "";
+	 http.abort();
+	 document.getElementById("display").style.visibility = "hidden"
+}
+else
+{
+	http.onreadystatechange = fuction()
+	{
+		if(this.readyState == 4 && this.status == 200)
+		{
+			document.getElementById("display").innerHTML = "";
+			getData(this);
+			document.getElementById("display").style.visibility = "visible";
+		}
+	};
+
+	var url1 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ term +"&format=json&callback=?";
+	http.open("GET" , url1, true);
+	http.send();
+}
+}
+ fuction getData(data)
+ {
+ 	var dataread = JSON.parse(data.responseText);
+ 	var read = dataread[1];
+ 	var ul = document.getElementById("display");
+
+ 	for (var i = 0; i<read.length ; i++)
+ 	{
+ 		if(read[i] != "")
+ 		{
+ 			var item
+ 		}
+ 	}
+ }
+</script>
+</body>
+</html>
+
